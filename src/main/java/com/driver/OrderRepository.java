@@ -21,7 +21,7 @@ public class OrderRepository {
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId){
-        List<String> orders = partnerOrderHashMap.get(partnerId);
+        List<String> orders = partnerOrderHashMap.getOrDefault(partnerId, new ArrayList<>());
         orders.add(orderId);
         partnerOrderHashMap.put(partnerId, orders);
         // setting numbers of order assigned
