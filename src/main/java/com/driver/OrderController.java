@@ -28,6 +28,7 @@ public class OrderController {
         orderService.addOrder(order);
         return new ResponseEntity<>("New order added successfully", HttpStatus.CREATED);
     }
+//    localhost:8098/orders/add-order/
 
     @PostMapping("/add-partner/{partnerId}")
     public ResponseEntity<String> addPartner(@PathVariable String partnerId){
@@ -41,6 +42,7 @@ public class OrderController {
         //This is basically assigning that order to that partnerId
         return new ResponseEntity<>("New order-partner pair added successfully", HttpStatus.CREATED);
     }
+//    localhost:8098/orders/add-order-partner-pair?orderId=001&partnerId=2
 
     @GetMapping("/get-order-by-id/{orderId}")
     public ResponseEntity<Order> getOrderById(@PathVariable String orderId){
@@ -60,7 +62,7 @@ public class OrderController {
 
         return new ResponseEntity<>(deliveryPartner, HttpStatus.CREATED);
     }
-
+//    localhost:8098/orders/get-partner-by-id/1
     @GetMapping("/get-order-count-by-partner-id/{partnerId}")
     public ResponseEntity<Integer> getOrderCountByPartnerId(@PathVariable String partnerId){
 
@@ -70,6 +72,7 @@ public class OrderController {
 
         return new ResponseEntity<>(orderCount, HttpStatus.CREATED);
     }
+//    localhost:8098/orders/get-order-count-by-partner-id/1
 
     @GetMapping("/get-orders-by-partner-id/{partnerId}")
     public ResponseEntity<List<String>> getOrdersByPartnerId(@PathVariable String partnerId){
@@ -79,6 +82,7 @@ public class OrderController {
 
         return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
+//    localhost:8098/orders/get-orders-by-partner-id/1
 
     @GetMapping("/get-all-orders")
     public ResponseEntity<List<String>> getAllOrders(){
@@ -97,7 +101,7 @@ public class OrderController {
         return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-count-of-orders-left-after-given-time/{partnerId}")
+    @GetMapping("/get-count-of-orders-left-after-given-time/{time}/{partnerId}")
     public ResponseEntity<Integer> getOrdersLeftAfterGivenTimeByPartnerId(@PathVariable String time, @PathVariable String partnerId){
 
         Integer countOfOrders = orderService.getOrdersLeftAfterGivenTimeByPartnerId(time, partnerId);
