@@ -29,14 +29,15 @@ public class OrderRepository {
     }
 
     public Order getOrderById(String orderId){
-        return orderHashMap.get(orderId);
+        return orderHashMap.getOrDefault(orderId, null);
     }
 
     public DeliveryPartner getPartnerById(String partnerId){
-        return deliveryPartnerHashMap.get(partnerId);
+        return deliveryPartnerHashMap.getOrDefault(partnerId, null);
     }
 
     public int getOrderCountByPartnerId(String partnerId){
+        if(!deliveryPartnerHashMap.containsKey(partnerId)) return 0;
         return deliveryPartnerHashMap.get(partnerId).getNumberOfOrders();
     }
 
