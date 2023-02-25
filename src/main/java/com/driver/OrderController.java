@@ -35,6 +35,7 @@ public class OrderController {
         orderService.addPartner(partnerId);
         return new ResponseEntity<>("New delivery partner added successfully", HttpStatus.CREATED);
     }
+//    localhost:8098/orders/add-partner/1
 
     @PutMapping("/add-order-partner-pair")
     public ResponseEntity<String> addOrderPartnerPair(@RequestParam String orderId, @RequestParam String partnerId){
@@ -91,6 +92,7 @@ public class OrderController {
         //Get all orders
         return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
+//    localhost:8098/orders/get-all-orders
 
     @GetMapping("/get-count-of-unassigned-orders")
     public ResponseEntity<Integer> getCountOfUnassignedOrders(){
@@ -100,6 +102,7 @@ public class OrderController {
 
         return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
     }
+//    localhost:8098/orders/get-count-of-unassigned-orders
 
     @GetMapping("/get-count-of-orders-left-after-given-time/{time}/{partnerId}")
     public ResponseEntity<Integer> getOrdersLeftAfterGivenTimeByPartnerId(@PathVariable String time, @PathVariable String partnerId){
@@ -110,6 +113,7 @@ public class OrderController {
 
         return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
     }
+//    localhost:8098/orders/get-count-of-orders-left-after-given-time/10:20/2
 
     @GetMapping("/get-last-delivery-time/{partnerId}")
     public ResponseEntity<String> getLastDeliveryTimeByPartnerId(@PathVariable String partnerId){

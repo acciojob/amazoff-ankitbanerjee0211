@@ -58,7 +58,14 @@ public class OrderService {
         int hr = time/60;
         int min = time-hr*60;
 
-        return String.valueOf(hr) + ':' + String.valueOf(min);
+        String timeStr = "";
+        if(hr<10) timeStr = "0" + hr + ":";
+        else timeStr = hr + ":";
+
+        if(min<10) timeStr += ("0" + min);
+        else timeStr += min;
+
+        return timeStr;
     }
 
     public void deletePartnerById(String partnerId){
