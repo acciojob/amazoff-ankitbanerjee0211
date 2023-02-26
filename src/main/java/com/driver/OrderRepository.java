@@ -60,28 +60,23 @@ public class OrderRepository {
     }
 
     public int getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId){
-        int ordersLeft = 0;
+        int actualTime = Integer.parseInt(time.substring(0,2)) * 60 + Integer.parseInt(time.substring(3));
+        int countOrder = 0;
 
-        if(!partnerOrderHashMap.containsKey(partnerId)) return 0;
-
-        int hr = Integer.parseInt(time.substring(0, 2));
-        int min = Integer.parseInt(time.substring(3));
-        int currTime = hr*60 + min;
-
-        List<String> orders = partnerOrderHashMap.get(partnerId);
-        for(String order: orders){
-            int orderTime = orderHashMap.get(order).getDeliveryTime();
-            ordersLeft += (orderTime>currTime)?1:0;
+        for (String order: partnerOrderHashMap.get(partnerId)){
+            if(getOrderById(order).getDeliveryTime() > actualTime){
+                countOrder++;
+            }
         }
 
-        return ordersLeft;
+        return countOrder;
     }
 
     public int getLastDeliveryTimeByPartnerId(String partnerId){
-        int maxTime = 0;
-        List<String> orders = partnerOrderHashMap.getOrDefault(partnerId, new ArrayList<>());
+        int maxTime = Integer.MIN_VALUE;
+        List<String> orders = partnerOrderHashMap.get(partnerId);
         for(String order: orders){
-            int time = orderHashMap.get(order).getDeliveryTime();
+            int time = getOrderById(order).getDeliveryTime();
             maxTime = Math.max(time, maxTime);
         }
 

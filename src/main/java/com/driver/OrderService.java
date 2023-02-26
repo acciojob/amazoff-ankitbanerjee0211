@@ -56,7 +56,7 @@ public class OrderService {
     public String getLastDeliveryTimeByPartnerId(String partnerId){
         int time = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
         int hr = time/60;
-        int min = time-hr*60;
+        int min = time%60;
 
         String timeStr = "";
         if(hr<10) timeStr = "0" + hr + ":";
